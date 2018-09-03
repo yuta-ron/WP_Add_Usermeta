@@ -20,11 +20,11 @@ class WP_Add_UserMeta {
 	}
 
 	function activate() {
-		add_filter( 'user_contactmethods', 'modify_user_contact_methods' );
+		add_filter( 'user_contactmethods', array($this, 'modify_user_contact_methods'));
 	}
 
 	function deactivate() {
-		add_filter( 'user_contactmethods', 'remove_usermeta_contacts' );
+		add_filter( 'user_contactmethods', array($this, 'remove_usermeta_contacts' ));
 	}
 
 	function add_usermeta_contacts($user_contact) {
