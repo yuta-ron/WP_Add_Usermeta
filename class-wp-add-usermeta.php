@@ -12,12 +12,13 @@ Text Domain:  wporg
 Domain Path:  /wp_add_usermeta
 */
 
+		register_activation_hook(__FILE__, array('WP_Add_UserMeta', 'activate'));
+		register_deactivation_hook(__FILE__, array('WP_Add_UserMeta', 'deactivate'));
 
 class WP_Add_UserMeta {
 	
 	function __construct() {
-		register_activation_hook(__FILE__, array(&$this, 'activate'));
-		register_deactivation_hook(__FILE__, array(&$this, 'deactivate'));
+
 	}
 
 	function activate() {
