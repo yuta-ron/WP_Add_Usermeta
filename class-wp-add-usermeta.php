@@ -12,7 +12,7 @@ Text Domain:  wporg
 Domain Path:  /wp_add_usermeta
 */
 
-/*
+
 class WP_Add_UserMeta {
 	
 	function __construct() {
@@ -21,7 +21,7 @@ class WP_Add_UserMeta {
 	}
 
 	function activate() {
-		add_filter( 'user_contactmethods', array($this, 'modify_user_contact_methods'));
+		add_filter( 'user_contactmethods', array($this, 'add_usermeta_contacts'));
 	}
 
 	function deactivate() {
@@ -45,14 +45,3 @@ class WP_Add_UserMeta {
 }
 
 new WP_Add_UserMeta();
-*/
-
-
-	function add_usermeta_contacts($user_contact) {
-		$user_contact['qiita'] = __('Qiita URL');
-		$user_contact['github'] = __('GitHub URL');
-
-		return $user_contact;
-	}
-
-			add_filter( 'user_contactmethods', 'modify_user_contact_methods');
