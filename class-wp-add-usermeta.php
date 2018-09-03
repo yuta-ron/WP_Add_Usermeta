@@ -55,4 +55,4 @@ function add_usermeta_contacts($user_contact) {
 	return $user_contact;
 }
 
-add_filter( 'user_contactmethods', array($this, 'add_usermeta_contacts'));
+add_filter( 'user_contactmethods', 'add_usermeta_contacts');
