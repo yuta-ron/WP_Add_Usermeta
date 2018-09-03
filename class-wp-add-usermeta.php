@@ -13,10 +13,10 @@ Domain Path:  /wp_add_usermeta
 */
 
 class WP_Add_UserMeta {
-
+	
 	function __construct() {
-		register_activation_hook( __FILE__, 'activate' );
-		register_deactivation_hook( __FILE__, 'deactivate' );
+		register_activation_hook(__FILE__, array($this, 'activate'));
+		register_deactivation_hook(__FILE__, array($this, 'deactivate'));
 	}
 
 	function activate() {
@@ -27,16 +27,16 @@ class WP_Add_UserMeta {
 		add_filter( 'user_contactmethods', 'remove_usermeta_contacts' );
 	}
 
-	function add_usermeta_contacts( $user_contact ) {
-		$user_contact['qiita']  = __( 'Qiita URL' );
-		$user_contact['github'] = __( 'GitHub URL' );
+	function add_usermeta_contacts($user_contact) {
+		$user_contact['qiita'] = __('Qiita URL');
+		$user_contact['github'] = __('GitHub URL');
 
 		return $user_contact;
 	}
 
-	function remove_usermeta_contacts( $user_contact ) {
-		unset( $user_contact['qiita'] );
-		unset( $user_contact['github'] );
+	function remove_usermeta_contacts($user_contact){
+		unset($user_contact['qiita']);
+		unset($user_contact['github']);
 
 		return $user_contact;
 	}
