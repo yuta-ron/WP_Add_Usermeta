@@ -1,4 +1,5 @@
 <?php
+
 /*
 Plugin Name:  WP Add UserMeta
 Plugin URI:   yutaron.tokyo
@@ -12,19 +13,20 @@ Text Domain:  wporg
 Domain Path:  /wp_add_usermeta
 */
 
+/*
 class WP_Add_UserMeta {
 	
 	function __construct() {
-		register_activation_hook(__FILE__, array($this, 'activate'));
-		register_deactivation_hook(__FILE__, array($this, 'deactivate'));
+		register_activation_hook(__FILE__, array('WP_Add_UserMeta', 'activate'));
+		register_deactivation_hook(__FILE__, array('WP_Add_UserMeta', 'deactivate'));
 	}
 
 	function activate() {
-		add_filter( 'user_contactmethods', 'modify_user_contact_methods' );
+		add_filter( 'user_contactmethods', array($this, 'add_usermeta_contacts'));
 	}
 
 	function deactivate() {
-		add_filter( 'user_contactmethods', 'remove_usermeta_contacts' );
+		add_filter( 'user_contactmethods', array($this, 'remove_usermeta_contacts' ));
 	}
 
 	function add_usermeta_contacts($user_contact) {
@@ -44,3 +46,15 @@ class WP_Add_UserMeta {
 }
 
 new WP_Add_UserMeta();
+*/
+
+
+function add_usermeta_contacts($user_contact) {
+	$user_contact['qiita'] = __('Qiita');
+	$user_contact['qiita_token'] = __('Qiita_accesstoken');
+	$user_contact['github'] = __('GitHub');
+
+	return $user_contact;
+}
+
+add_filter( 'user_contactmethods', 'add_usermeta_contacts');
