@@ -51,6 +51,7 @@ new WP_Add_UserMeta();
 
 function add_usermeta_contacts($user_contact) {
 	$user_contact['qiita'] = __('Qiita');
+	$user_contact['qiita_token'] = __('Qiita_accesstoken');
 	$user_contact['github'] = __('GitHub');
 
 	return $user_contact;
